@@ -14,18 +14,20 @@ export default async function Project({ params }: Props) {
     return (
         <div>
             <header className="flex items-center justify-between">
-                <h1 className="bg-gradient-to-r from-orange-400 via-red-400 to-purple-600 bg-clip-text text-transparent text-5xl font-extrabold">{project.name}</h1>
-                <a href={project.url} title="View Project" target="_blank" rel="noopener noreferrer" className="bg-gray-100 rounded-lg text-gray-500 font-bold py-3 px-4 whitespace-nowrap hover:bg-pink-500 hover:text-pink-100 transition">View Project</a>
+                {/* <h1 className="bg-gradient-to-r from-orange-400 via-red-400 to-purple-600 bg-clip-text text-transparent text-9xl">{project.name}</h1> */}
+                <h1 className="text-black text-9xl">{project.name}</h1>
+                <a href={project.url} title="View Project" target="_blank" rel="noopener noreferrer" className="bg-gray-100 rounded-lg text-gray-500 font-bold py-3 px-4 whitespace-nowrap hover:bg-black hover:text-white transition">View Project</a>
             </header>
 
-            {/* content goes here */}
+            {/* image goes here */}
+            <Image src={project.image} alt={project.name} width={1920} height={1080} className="mt-10 mb-20 object-cover rounded-xl"/>
 
-            <div className="text-lg text-gray-700 mt-5">
+
+             {/* content goes here */}
+
+             <div className="text-lg text-gray-700 mt-5">
                 <PortableText value={project.content} />
             </div>
-
-            {/* image goes here */}
-            <Image src={project.image} alt={project.name} width={1920} height={1080} className="mt-10 border-2 border-gray-700 object-cover rounded-xl"/>
         </div>
     )
 }

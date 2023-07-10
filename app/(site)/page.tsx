@@ -1,6 +1,7 @@
 import { getProjects } from "@/sanity/sanity-utils"
 import Image from "next/image";
 import Link from "next/link";
+import image from "../../public/img/home-hero.png"
 
 export default async function Home() {
 
@@ -8,16 +9,21 @@ export default async function Home() {
 
   return (
     <div>
+      <div className="flex items-center justify-between">
+        <h1 className="text-[200px]">Article</h1>
+        <div className="w-1 h-52 bg-black"></div>
+        <p className="mt-3 text-xl max-w-md text-4xl">Brand and Digital for Culture, Commerce and Good.</p>
+      </div>
 
-      <h1 className="text-7xl font-extrabold">Hello I&apos;m <span className="bg-gradient-to-r from-orange-400 via-red-400 to-purple-600 bg-clip-text text-transparent">Chris</span>!</h1>
+      <div className="py-20">
+        <Image src={image} alt="hero image"/>
+      </div>
 
-      <p className="mt-3 text-xl text-gray-600">Check out my projects!</p>
-
-      <h2 className="mt-24 font-bold text-gray-700 text-3xl">My Projects</h2>
+      {/* <h2 className="mt-24 font-bold text-gray-700 text-3xl">My Projects</h2> */}
 
       <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-cols-3 gap-8">
         {projects.map((project) => (
-          <Link href={`/projects/${project.slug}`} key={project._id} className="border-2 border-gray-500 rounded-lg p-1 hover:scale-105 hover:boder-blue-500 transition">
+          <div key={project._id} className="bg-gray-100 rounded-lg p-5">
             {
               project.image && (
                 <Image
@@ -25,12 +31,23 @@ export default async function Home() {
                   alt={project.name}
                   width={750}
                   height={300}
-                  className="object-cover rounded-lg border border-gray-500"
+                  className="object-cover rounded-lg"
                 />
               )
             }
-            <div className="mt-2 font-extrabold bg-gradient-to-r from-orange-400 via-red-400 to-purple-600 bg-clip-text text-transparent">{project.name}</div>
-          </Link>
+
+            <div className="pt-5 pb-3">
+
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-black">{project.name}</h5>
+              <p className="mb-4 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <Link href={`/projects/${project.slug}`} className="bg-black inline-flex items-center text-centerbg-gray-100 rounded-lg text-white font-bold py-3 px-4 whitespace-nowrap">
+                Read more
+                <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+              </Link>
+            </div>
+          </div>
         ))}
       </div>
     </div>
