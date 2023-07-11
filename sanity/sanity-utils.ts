@@ -4,6 +4,8 @@ import clientConfig from './config/client-config'
 import { Page } from "@/types/Page";
 
 export async function getProjects(): Promise<Project[]> {
+    const revalidate = 60 //Time interval
+
   return createClient(clientConfig).fetch(
     groq`*[_type == "project"]{
       _id,
@@ -13,7 +15,8 @@ export async function getProjects(): Promise<Project[]> {
       "image": image.asset->url,
       url,
       content
-    }`
+    }`,
+    {next: {revalidate}}
   )
 }
 
